@@ -25,9 +25,16 @@ embeddings=OpenAIEmbeddings()
 
 from langchain_chroma import Chroma
 from langchain_core.prompts import ChatPromptTemplate
+import chromadb
 
-print(os.getcwd())
-print(os.path.exists("./chroma_db"))
+import os
+
+st.write("cwd:", os.getcwd())
+st.write("chromadb version:", chromadb.__version__)
+st.write("db exists:", os.path.exists("./chroma_db"))
+
+if os.path.exists("./chroma_db"):
+    st.write("db files:", os.listdir("./chroma_db"))
 
 
 vector_store = Chroma(
