@@ -29,12 +29,7 @@ import chromadb
 
 import os
 
-st.write("cwd:", os.getcwd())
-st.write("chromadb version:", chromadb.__version__)
-st.write("db exists:", os.path.exists("./chroma_db"))
 
-if os.path.exists("./chroma_db"):
-    st.write("db files:", os.listdir("./chroma_db"))
 
 
 vector_store = Chroma(
@@ -133,10 +128,21 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 
 store={}
 
+'''
+for local development since streamlit refreshes  need to change that
 def get_session_history(session_id :str) ->BaseChatMessageHistory:
     if session_id not in store:
         store[session_id]=ChatMessageHistory()    
-    return store[session_id]
+    return store[session_id]'''
+
+if "history_store" not in st.session_state:
+    st.session_state.history_store = {}
+
+def get_session_history(session_id: str) -> BaseChatMessageHistory:
+    if session_id not in st.session_state.history_store:
+        st.session_state.history_store[session_id] = ChatMessageHistory()
+
+    return st.session_state.history_store[session_id]
 
 conversastional_rag_chain=RunnableWithMessageHistory(
     rag_chain,
