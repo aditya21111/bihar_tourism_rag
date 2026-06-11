@@ -178,12 +178,16 @@ prompt = text_prompt or voice_prompt
 
 if prompt: 
         st.chat_message("user").write(prompt)
-        response=conversastional_rag_chain.invoke(
-            {'input':prompt},
-        config={
-            "configurable": {'session_id': st.session_state.session_id}},
 
-        )
+        try:
+            response=conversastional_rag_chain.invoke(
+                {'input':prompt},
+            config={
+                "configurable": {'session_id': st.session_state.session_id}},
+
+            )
+        except Exception as e:
+             st.error(e)
         st.chat_message("assistant").write(response.content)
 
 
