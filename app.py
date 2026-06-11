@@ -128,12 +128,12 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 
 store={}
 
-'''
-for local development since streamlit refreshes  need to change that
-def get_session_history(session_id :str) ->BaseChatMessageHistory:
-    if session_id not in store:
-        store[session_id]=ChatMessageHistory()    
-    return store[session_id]'''
+
+#for local development since streamlit refreshes  need to change that
+#def get_session_history(session_id :str) ->BaseChatMessageHistory:
+ #   if session_id not in store:
+  #    store[session_id]=ChatMessageHistory()    
+   # return store[session_id]
 
 if "history_store" not in st.session_state:
     st.session_state.history_store = {}
