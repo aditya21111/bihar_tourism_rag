@@ -181,3 +181,4 @@ wikipedia==1.4.0
 xxhash==3.7.0
 yarl==1.24.2
 zstandard==0.25.0
+streamlit_mic_recorder

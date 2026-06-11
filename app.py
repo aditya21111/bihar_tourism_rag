@@ -4,6 +4,8 @@ import os
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from operator import itemgetter
+from streamlit_mic_recorder import speech_to_text
+
 import uuid
 
 load_dotenv()
@@ -163,7 +165,15 @@ for msg in st.session_state.messages:
 
 
 
-prompt=st.chat_input(placeholder='Enter question related to bihar tourism | अपनी भाषा में बिहार पर्यटन से जुड़े सवाल पूछें। ')
+text_prompt=st.chat_input(placeholder='Enter question related to bihar tourism | अपनी भाषा में बिहार पर्यटन से जुड़े सवाल पूछें। ')
+
+voice_prompt = speech_to_text(
+    start_prompt="🎤",
+    stop_prompt="⏹️",
+    key="STT"
+)
+
+prompt = text_prompt or voice_prompt
 
 
 if prompt: 
