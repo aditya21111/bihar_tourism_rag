@@ -163,7 +163,7 @@ for msg in st.session_state.messages:
 
 
 
-prompt=st.chat_input(placeholder='Enter question related to bihar tourism')
+prompt=st.chat_input(placeholder='Enter question related to bihar tourism | अपनी भाषा में बिहार पर्यटन से जुड़े सवाल पूछें। ')
 
 
 if prompt: 
