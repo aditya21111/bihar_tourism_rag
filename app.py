@@ -7,6 +7,7 @@ from operator import itemgetter
 from streamlit_mic_recorder import speech_to_text
 
 import uuid
+import re
 
 load_dotenv()
 
@@ -186,16 +187,19 @@ if prompt:
                 "configurable": {'session_id': st.session_state.session_id}},
 
             )
+
+            st.chat_message("assistant").write(response.content)
+            st.session_state.messages.append(
+                    {"role": "user", "content": prompt}
+                )
+            st.session_state.messages.append(
+                    {"role": "assistant", "content": response.content}
+                )
         except Exception as e:
-             st.error(e)
-        st.chat_message("assistant").write(response.content)
+             print(dir(e))
+             if int(e.status_code)==429:                  
+                error_msg=e.message
+                match = re.search(r"Please try again in .*?\.", error_msg)
+                st.error("Model's rate limit reached"+" "+match.group())
 
-
-
-        st.session_state.messages.append(
-            {"role": "user", "content": prompt}
-        )
-
-        st.session_state.messages.append(
-            {"role": "assistant", "content": response.content}
-        )
+                
