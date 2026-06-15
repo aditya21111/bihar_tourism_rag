@@ -1,4 +1,4 @@
-<![CDATA[# 🏛️ Bihar Tourism RAG Chatbot
+# 🏛️ Bihar Tourism RAG Chatbot
 
 An AI-powered conversational chatbot that serves as an intelligent **Bihar Tourism Guide**, built using **Retrieval-Augmented Generation (RAG)**. Ask questions about tourist attractions, culture, history, food, festivals, and travel in Bihar — via text or voice!
 
